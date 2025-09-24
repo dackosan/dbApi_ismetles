@@ -7,9 +7,16 @@ db.prepare(
 ).run();
 
 export const getCars = () => db.prepare("SELECT * FROM cars").all();
-export const getCarById = (id) => db.prepare("SELECT * FROM cars WHERE id = ?").get(id);
-export const createCar = () => db.prepare("INSERT INTO cars ").run();
-export const updateCar = () => db.prepare("SELECT * FROM cars").run();
-export const deleteCar = () => db.prepare("SELECT * FROM cars").run();
+export const getCarById = (id) =>
+  db.prepare("SELECT * FROM cars WHERE id = ?").get(id);
+export const createCar = (name, brand) =>
+  db.prepare("INSERT INTO cars (name, brand) VALUES (?,?)").run(name, brand);
+export const updateCar = () => db.prepare("UPDATE").run();
+export const deleteCar = (id) =>
+  db.prepare("DELETE * FROM cars WHERE id = ?").run(id);
 
-const cars = []
+//if (!db.getCars) {
+//  createCar("Lada", "4x4");
+//  createCar("Zastava", "101");
+//  createCar("Fiat", "Sicento");
+//}
